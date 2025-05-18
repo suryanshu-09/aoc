@@ -18,9 +18,10 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	days.Day1_0(getInput(1))
 	days.Day1_1(getInput(1))
-	days.Day2_0(getInput(2))
+	days.Day1_2(getInput(1))
+	days.Day2_1(getInput(2))
+	days.Day2_2(getInput(2))
 }
 
 func getInput(day int) string {
