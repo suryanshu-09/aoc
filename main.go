@@ -22,6 +22,8 @@ func main() {
 	days.Day1_2(getInput(1))
 	days.Day2_1(getInput(2))
 	days.Day2_2(getInput(2))
+	days.Day3_1(getInput(3))
+	days.Day3_2(getInput(3))
 }
 
 func getInput(day int) string {
