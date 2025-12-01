@@ -18,7 +18,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	// days.Day1_1(getInput(1))
+	days.Day1_1(getInput(1))
 	// days.Day1_2(getInput(1))
 	// days.Day2_1(getInput(2))
 	// days.Day2_2(getInput(2))
@@ -26,7 +26,8 @@ func main() {
 	// days.Day3_2(getInput(3))
 	// days.Day4_1(getInput(4))
 	// days.Day4_2(getInput(4))
-	days.Day5_1(getInput(5))
+	// days.Day5_1(getInput(5))
+	// days.Day5_2(getInput(5))
 }
 
 func getInput(day int) string {
@@ -37,8 +38,8 @@ func getInput(day int) string {
 		content, _ := os.ReadFile(inputFile)
 		return string(content)
 	}
-	sessionCookie := os.Getenv("SESSION")
-	url := fmt.Sprintf("https://adventofcode.com/2024/day/%d/input", day)
+	sessionCookie := os.Getenv("SESSION_2025")
+	url := fmt.Sprintf("https://adventofcode.com/2025/day/%d/input", day)
 	req, _ := http.NewRequest("GET", url, nil)
 
 	req.AddCookie(&http.Cookie{
