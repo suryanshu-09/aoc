@@ -1,70 +1,70 @@
+// Package days
 package days
 
 import (
 	"fmt"
-	"sort"
 	"strconv"
 	"strings"
 )
 
 func Day1_1(input string) {
-	lines := strings.Split(strings.TrimSpace(input), "\n")
-
-	var left, right []int
-
-	for _, line := range lines {
-		parts := strings.Fields(line)
-
-		leftNum, _ := strconv.Atoi(parts[0])
-		rightNum, _ := strconv.Atoi(parts[1])
-
-		left = append(left, leftNum)
-		right = append(right, rightNum)
-	}
-	sort.Ints(left)
-	sort.Ints(right)
-
-	totalDistance := 0
-
-	for i := 0; i < len(left); i++ {
-		distance := left[i] - right[i]
-
-		if distance < 0 {
-			distance *= -1
+	dial := 50
+	password := 0
+	for rotation := range strings.SplitSeq(input, "\n") {
+		if len(rotation) == 0 {
+			break
 		}
-
-		totalDistance += distance
+		if rotation[0] == 'L' {
+			rot, err := strconv.Atoi(rotation[1:])
+			if err != nil {
+				panic(fmt.Errorf("rotation conv err: %v", err))
+			}
+			dial = (((dial - rot) % 100) + 100) % 100
+			if dial == 0 {
+				password++
+			}
+		} else {
+			rot, err := strconv.Atoi(rotation[1:])
+			if err != nil {
+				panic(fmt.Errorf("rotation conv err: %v", err))
+			}
+			dial = (dial + rot) % 100
+			if dial == 0 {
+				password++
+			}
+		}
 	}
-
-	fmt.Println("Output Day 1 Part 1", totalDistance)
+	fmt.Println(password)
 }
 
 func Day1_2(input string) {
-	lines := strings.Split(strings.TrimSpace(input), "\n")
+	dial := 50
+	password := 0
+	for rotation := range strings.SplitSeq(input, "\n") {
+		if len(rotation) == 0 {
+			break
+		}
+		rot, err := strconv.Atoi(rotation[1:])
+		if err != nil {
+			panic(fmt.Errorf("rotation conv err: %v", err))
+		}
+		password += int(rot / 100)
+		rot %= 100
+		if rotation[0] == 'L' {
+			if dial != 0 && dial-rot < 0 {
+				password++
+			}
 
-	var left, right []int
-
-	for _, line := range lines {
-		parts := strings.Fields(line)
-
-		leftNum, _ := strconv.Atoi(parts[0])
-		rightNum, _ := strconv.Atoi(parts[1])
-
-		left = append(left, leftNum)
-		right = append(right, rightNum)
+			dial = (dial - rot + 100) % 100
+		} else {
+			if dial != 0 && rot+dial > 100 {
+				password++
+			}
+			dial = (dial + rot) % 100
+		}
+		if dial == 0 {
+			password++
+		}
 	}
-
-	rightMap := make(map[int]int)
-
-	for _, num := range right {
-		rightMap[num]++
-	}
-
-	similarityScore := 0
-
-	for _, num := range left {
-		similarityScore += num * rightMap[num]
-	}
-
-	fmt.Println("Output Day 1 Part 2", similarityScore)
+	fmt.Println(password)
 }
