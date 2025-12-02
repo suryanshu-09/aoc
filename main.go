@@ -19,9 +19,9 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 	// days.Day1_1(getInput(1))
-	days.Day1_2(getInput(1))
+	// days.Day1_2(getInput(1))
 	// days.Day2_1(getInput(2))
-	// days.Day2_2(getInput(2))
+	days.Day2_2(getInput(2))
 	// days.Day3_1(getInput(3))
 	// days.Day3_2(getInput(3))
 	// days.Day4_1(getInput(4))
