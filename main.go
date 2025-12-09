@@ -27,7 +27,9 @@ func main() {
 	// days.Day4_1(getInput(4))
 	// days.Day4_2(getInput(4))
 	// days.Day5_1(getInput(5))
-	days.Day5_2(getInput(5))
+	// days.Day5_2(getInput(5))
+	// days.Day6_1(getInput(6))
+	days.Day6_2(getInput(6))
 }
 
 func getInput(day int) string {
